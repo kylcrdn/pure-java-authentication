@@ -6,15 +6,17 @@ import java.io.IOException;
 import java.net.InetSocketAddress;
 
 public class Server {
-    private HttpServer server;
 
     public void start() {
         try {
             // Creating the server
-            server = HttpServer.create(
+            HttpServer server = HttpServer.create(
                     new InetSocketAddress(8080),
                     0
             );
+
+            // Register endpoints
+            server.createContext("/hello", new HelloHandler());
 
             System.out.println("Server running on port 8080");
 
