@@ -5,19 +5,22 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 
 public class Database {
+    private static final String URL = requireEnv("DB_URL");
+    private static final String USER = requireEnv("DB_USER");
+    private static final String PASSWORD = requireEnv("DB_PASSWORD");
 
-    // Local computer - standard port - database name
-    private static final String URL =
-            "jdbc:mysql://localhost:3306/java_login";
+    private static String requireEnv(String name) {
+        String value = System.getenv(name);
+        if (value == null || value.trim().isEmpty()) {
+            throw new IllegalStateException(
+                    "Missing required environment variable: " + name
+            );
+        }
+        return value;
 
-    // If you created a specific user for the database
-    private static final String USER = "spriggan";
+    }
 
-    private static final String PASSWORD = "Mamamo123";
-
-    // Opens a connection to MySQL through Connector/J
     public static Connection getConnection() throws SQLException {
         return DriverManager.getConnection(URL, USER, PASSWORD);
     }
-
 }
