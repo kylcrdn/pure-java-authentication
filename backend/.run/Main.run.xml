@@ -1,6 +1,6 @@
 <component name="ProjectRunConfigurationManager">
-  <configuration default="false" name="Database" type="Application" factoryName="Application">
-    <option name="MAIN_CLASS_NAME" value="auth.database.Database" />
+  <configuration default="false" name="Main" type="Application" factoryName="Application">
+    <option name="MAIN_CLASS_NAME" value="Main" />
     <module name="backend" />
     <extension name="net.ashald.envfile">
       <option name="IS_ENABLED" value="true" />
