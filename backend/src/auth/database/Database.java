@@ -23,4 +23,12 @@ public class Database {
     public static Connection getConnection() throws SQLException {
         return DriverManager.getConnection(URL, USER, PASSWORD);
     }
+
+    public static void main(String[] args) {
+        try(Connection connection = getConnection()) {
+            System.out.println(connection.getCatalog() + " was successfully connected");
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
 }
