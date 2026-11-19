@@ -1,10 +1,10 @@
 package auth.session;
 
 import auth.model.User;
-import com.mysql.cj.Session;
 
 import java.security.SecureRandom;
 import java.util.Base64;
+import java.util.Objects;
 import java.util.concurrent.ConcurrentHashMap;
 
 // Remembering which user is logged in
@@ -20,6 +20,7 @@ public class SessionManager {
             60 * 60 * 1000; // 1 hour
 
     public String createSession(User user) {
+        Objects.requireNonNull(user, "user");
 
         byte[] bytes = new byte[32];
         random.nextBytes(bytes);

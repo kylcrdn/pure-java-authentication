@@ -98,6 +98,11 @@ public class AuthHandler implements HttpHandler {
         String password = requiredString(body, "password");
 
         User user = authService.login(email, password);
+        if (user == null) {
+            sendJson(exchange, 401,
+                    Map.of("message", "Invalid email or password"));
+            return;
+        }
 
         String token = sessionManager.createSession(user);
 
